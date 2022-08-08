@@ -22,21 +22,23 @@
 <section class="card-container">
   {% for cheese in cheeses %}
     <div class="card">
-      <div class="card-content">
-        <div class="card-img-container">
-          <img 
-            src="{% static 'images/cheese-tall-slice.svg' %}" 
-            alt="A tall cheese"
-          >
+      <a href="{% url 'cheese_details' cheese.id %}">
+        <div class="card-content">
+          <div class="card-img-container">
+            <img 
+              src="{% static 'images/cheese-tall-slice.svg' %}" 
+              alt="A tall cheese"
+            >
+          </div>
+          <h2 class="card-title">{{ cheese.name }}</h2>
+          {% if cheese.age > 0 %}
+            <p>A {{ cheese.brand }} cheese, aged for {{ cheese.age }} years</p>
+          {% else %}
+            <p>A fresh {{ cheese.brand }} cheese </p>
+          {% endif %}
+          <p><small>{{ cheese.description }}</small></p>
         </div>
-        <h2 class="card-title">{{ cheese.name }}</h2>
-        {% if cheese.age > 0 %}
-          <p>A {{ cheese.brand }} cheese, aged for {{ cheese.age }} years</p>
-        {% else %}
-          <p>A fresh {{ cheese.brand }} cheese.</p>
-        {% endif %}
-        <p><small>{{ cheese.description }}</small></p>
-      </div>
+      </a>
     </div>
   {% endfor %}
 </section>

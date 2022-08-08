@@ -18,6 +18,9 @@ html {
 }
 
 body {
+  background-image: url('../images/delicious-pieces-cheese.jpg');
+  background-size: cover;
+  background-attachment: fixed;
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -97,7 +100,11 @@ nav li {
   margin: auto;
   padding: 10px 20px 0;
   max-width: 500px;
-}
+} 
+
+.header-logo-container > a > img{
+  height: 60px;
+} 
 
 .page-header {
   display: flex;
@@ -250,9 +257,14 @@ nav li {
 
   .header-logo-container {
     /* visual fix to help align logo */
-    padding-top: 6px;
+    margin-top: 0px;
+    padding-top: 0px;
     width: 256px;
     height: 35px;
+  }
+  .header-logo-container > a > img {
+    height: 30px;
+    width: 100%;
   }
 
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {

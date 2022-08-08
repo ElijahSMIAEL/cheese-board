@@ -28,8 +28,9 @@
     </div>
     <nav>
       <ul>
-        <li><a href="/cheeses">All Cheeses</a></li>
-        <li><a href="/about">About</a></li>
+        <li><a href="{% url 'cheeses_index' %}">All Cheeses</a></li>
+        <li><a href="{% url 'cheeses_create' %}">Add a Cheese</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
       </ul>
     </nav>
   </header>

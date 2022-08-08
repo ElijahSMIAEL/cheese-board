@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/cheeses/cheese-details.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="cheese-container">
+  <div class="cheese-img">
+    <img 
+      src="{% static 'images/cheese-tall-slice.svg' %}" 
+      alt="A tall cheese"
+    >
+  </div>
+  <div class="cheese-details">
+    <h1>{{ cheese.name }}</h1>
+    {% if cheese.age > 0 %}
+      <h2>A {{ cheese.brand }} cheese, aged for {{ cheese.age }} years </h2>
+    {% else %}
+      <h2>A fresh {{ cheese.brand }} cheese </h2>
+    {% endif %}
+    <p>{{ cheese.description }}</p>
+    <div class='cheese-actions'>
+      <a href="{% url 'cheeses_update' cheese.id %}" class='btn warn'>Edit</a>
+      <a href="{% url 'cheeses_delete' cheese.id %}" class='btn danger'>Delete</a>
+    </div>
+  </div>
+</section>
+<div class="feedings-toy-container">
+  <section class="reviews">
+    <div class="subsection-title">
+      <h2>Reviews</h2>
+      <img 
+        src="{% static 'images/cheese-sector.svg' %}" 
+        alt="Cheese Sector"
+      />
+      <img 
+        src="{% static 'images/cheese-face-left.svg' %}"
+        alt="Hole-y Cheese"
+      />
+      <img 
+        src="{% static 'images/cheese-wheel-slice.svg' %}" 
+        alt="Cheese Wheel"
+      />
+    </div>
+    <div class='review-container'>
+      {% for review in cheese.review_set.all %}
+      <div class='review'>
+        <h3>Rating: {{review.get_rating_display}}</h3>
+        <h3>{{review.content}}</h3>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+{% endblock %}
