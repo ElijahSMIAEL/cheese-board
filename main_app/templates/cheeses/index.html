@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/cheeses/cheese-index.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>Cheese List</h1>
+  <img src="{% static 'images/cheese-face-left.svg' %}" alt="A nice hole-y slice of cheese" />
+  <img src="{% static 'images/cheese-wheel-slice.svg' %}" alt="A cheese wheel slice" />
+  <img src="{% static 'images/cheese-square.svg' %}" alt="A cheese square" />
+  <img src="{% static 'images/cheese-sector.svg' %}" alt="A cheese arc-wedge" />
+</section>
+
+<section class="card-container">
+  {% for cheese in cheeses %}
+    <div class="card">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img 
+            src="{% static 'images/cheese-tall-slice.svg' %}" 
+            alt="A tall cheese"
+          >
+        </div>
+        <h2 class="card-title">{{ cheese.name }}</h2>
+        {% if cheese.age > 0 %}
+          <p>A {{ cheese.brand }} cheese, aged for {{ cheese.age }} years</p>
+        {% else %}
+          <p>A fresh {{ cheese.brand }} cheese.</p>
+        {% endif %}
+        <p><small>{{ cheese.description }}</small></p>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
