@@ -18,6 +18,11 @@
 
 .cheese-details {
   width: 98%;
+  background-color: #6c584c;
+  color: #ffddc2;
+  padding: 0px 10px 20px;
+  border: #e3d5ca 2px solid;
+  border-radius: 5px;
 }
 
 .cheese-actions {
@@ -101,6 +106,7 @@
 }
 
 .feedings-toy-container > section {
+  background-color: #e3d5ca;
   width: 80%;
   min-width: 360px;
   border: var(--borders);
