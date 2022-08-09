@@ -26,6 +26,7 @@ class Pairing(models.Model):
     choices=PAIRINGS,
     default=PAIRINGS[0][0]
   ) 
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return f'Name: {self.name} Type: {self.get_type_display()}'
@@ -55,6 +56,7 @@ class Review(models.Model):
     default=RATINGS[3][0]
   )
   cheese = models.ForeignKey(Cheese, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return f'Rating: {self.get_rating_display()} Review: {self.content}'

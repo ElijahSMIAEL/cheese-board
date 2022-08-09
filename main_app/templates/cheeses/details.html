@@ -92,7 +92,15 @@
           <div class="pairing-container">
             <div 
               class="color-block"
-              style="background-color: {{ pairing.color }}"
+              {% if pairing.type == 'W'%}
+                style="background-color: #660708 "
+              {% elif pairing.type == 'F'%}
+                style="background-color: #370617 "
+              {% elif pairing.type == 'C'%}
+                style="background-color: #b08968 "
+              {% elif pairing.type == 'Ch'%}
+                style="background-color: #37261c"
+              {% endif %}
             ></div>
             <a href="{% url 'pairing_detail' pairing.id %}">
               <p>{{ pairing.name }} {{ pairing.get_type_display }}</p>
@@ -106,13 +114,20 @@
     {% if cheese.user == request.user %}
     <h3>Available Pairings</h3>
     <div class="subsection-content">
-      {% comment %} We'll display available toys here {% endcomment %}
       {% if pairings.count %}
         {% for pairing in pairings.all %}
           <div class="pairing-container">
             <div 
               class="color-block"
-              style="background-color: {{ pairing.color }}"
+              {% if pairing.type == 'W'%}
+                style="background-color: #660708 "
+              {% elif pairing.type == 'F'%}
+                style="background-color: #370617 "
+              {% elif pairing.type == 'C'%}
+                style="background-color: #b08968 "
+              {% elif pairing.type == 'Ch'%}
+                style="background-color: #37261c"
+              {% endif %}
             ></div>
             <a href="{% url 'pairing_detail' pairing.id %}">
               <p>{{ pairing.name }} {{ pairing.get_type_display }}</p>
