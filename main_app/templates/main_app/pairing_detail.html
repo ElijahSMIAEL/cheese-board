@@ -11,7 +11,17 @@
 
 {% block content %}
   
-<div class="card" style="border-color: {{ pairing.color }}">
+<div class="card"
+  {% if pairing.type == 'W'%}
+    style="background-color: #660708 "
+  {% elif pairing.type == 'F'%}
+    style="background-color: #370617 "
+  {% elif pairing.type == 'C'%}
+      style="background-color: #b08968 "
+  {% elif pairing.type == 'Ch'%}
+      style="background-color: #37261c"
+  {% endif %}
+>
   <div class="card-content">
     <h2>{{ pairing.name }}</h2>
     <p>Type: {{ pairing.get_type_display }}</p>

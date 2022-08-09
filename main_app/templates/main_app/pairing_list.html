@@ -13,17 +13,27 @@
 
 <section class="page-header">
   <h1>All Cheese Pairings</h1>
-  <img src="{% static 'images/cheese-square.svg' %}" alt="A ball of string" />
-  <img src="{% static 'images/cheese-square.svg' %}" alt="A mouse" />
-  <img src="{% static 'images/cheese-square.svg' %}" alt="A scratching post" />
-  <img src="{% static 'images/cheese-square.svg' %}" alt="A fishy toy" />
+  <img src="{% static 'images/cheese-square.svg' %}" alt="A cheese square" />
+  <img src="{% static 'images/cheese-square.svg' %}" alt="A cheese square" />
+  <img src="{% static 'images/cheese-square.svg' %}" alt="A cheese square" />
+  <img src="{% static 'images/cheese-square.svg' %}" alt="A cheese square" />
 </section>
 
 <section class="card-container">
   {% for pairing in pairing_list %}
-  <div class="card" style="border-color: {{ pairing.color }} "
-  >
-    <div class="card-bg" style="background-color: {{ pairing.color }}"></div>
+  <div class="card">
+    <div class="card-bg"
+    {% if pairing.type == 'W'%}
+      style="background-color: #660708 "
+    {% elif pairing.type == 'F'%}
+      style="background-color: #370617 "
+    {% elif pairing.type == 'C'%}
+      style="background-color: #b08968 "
+    {% elif pairing.type == 'Ch'%}
+      style="background-color: #37261c"
+    {% endif %}
+    >
+    </div>
     <a href="{% url 'pairing_detail' pairing.id %}">
       <div class="card-content">
         <h2>{{ pairing.name }}</h2>

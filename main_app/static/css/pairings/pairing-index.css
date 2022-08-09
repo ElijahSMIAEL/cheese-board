@@ -15,7 +15,6 @@
 }
 
 .card-bg{
-  opacity: .4;
   position: absolute;
   display: inline-flex;
   top: 0;
@@ -32,6 +31,7 @@
   align-items: flex-end;
   justify-content: flex-end;
   flex-direction: column;
+  color: white;
 }
 
 .card > a {
