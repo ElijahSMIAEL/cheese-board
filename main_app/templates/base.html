@@ -28,11 +28,18 @@
     </div>
     <nav>
       <ul>
-        <li><a href="{% url 'cheeses_index' %}">All Cheeses</a></li>
-        <li><a href="{% url 'cheeses_create' %}">Add a Cheese</a></li>
-        <li><a href="{% url 'pairings_index' %}">All Pairings</a></li>
-        <li><a href="{% url 'pairings_create' %}">Add a Pairing</a></li>
-        <li><a href="{% url 'about' %}">About</a></li>
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'cheeses_index' %}">All Cheeses</a></li>
+          <li><a href="{% url 'cheeses_create' %}">Add a Cheese</a></li>
+          <li><a href="{% url 'pairings_index' %}">All Pairings</a></li>
+          <li><a href="{% url 'pairings_create' %}">Add a Pairing</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'home' %}">Login</a></li>
+          <li><a href="{% url 'signup' %}">Sign Up</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>
