@@ -26,10 +26,12 @@
       <h2>A fresh {{ cheese.brand }} cheese </h2>
     {% endif %}
     <p>{{ cheese.description }}</p>
+    {% if cheese.user == request.user %}
     <div class='cheese-actions'>
       <a href="{% url 'cheeses_update' cheese.id %}" class='btn warn'>Edit</a>
       <a href="{% url 'cheeses_delete' cheese.id %}" class='btn danger'>Delete</a>
     </div>
+    {% endif %}
   </div>
 </section>
 <div class="feedings-toy-container">
@@ -63,6 +65,7 @@
   <div class='review-container'>
       {% for review in cheese.review_set.all %}
       <div class='review'>
+        <p>Posted by: {{review.user}}</p>
         <h3>Rating: {{review.get_rating_display}}</h3>
         <h3>{{review.content}}</h3>
       </div>
@@ -77,9 +80,10 @@
   <section class="pairings">
     <div class="subsection-title">
       <h2>Pairings</h2>
-      <img src="{% static 'images/string.svg' %}" alt="A ball of string" />
-      <img src="{% static 'images/mouse.svg' %}" alt="A mouse" />
-      <img src="{% static 'images/fish.svg' %}" alt="A fishy toy" />
+      <img src="{% static 'images/wine-outline.svg' %}" alt="wine" />
+      <img src="{% static 'images/fruit-outline.svg' %}" alt="fruit" />
+      <img src="{% static 'images/cracker-outline.svg' %}" alt="cracker" />
+      <img src="{% static 'images/chocolate-outline.svg' %}" alt="chocolate" />
     </div>
     <h3>{{ cheese.name }}'s Pairings</h3>
     <div class="subsection-content">
@@ -99,6 +103,7 @@
         <p class="no-pairings">{{pairing.name}} doesn't have any pairings</p>
       {% endif %}
     </div>
+    {% if cheese.user == request.user %}
     <h3>Available Pairings</h3>
     <div class="subsection-content">
       {% comment %} We'll display available toys here {% endcomment %}
@@ -124,6 +129,7 @@
         </p>
       {% endif %}
     </div>
+    {% endif %}
   </section>
 </div>
 

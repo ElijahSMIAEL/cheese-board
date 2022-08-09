@@ -24,6 +24,8 @@
     <div class="card">
       <a href="{% url 'cheese_details' cheese.id %}">
         <div class="card-content">
+          <p>Posted By:</p>
+          <h2 class="user-display">{{ cheese.user }}</h2>
           <div class="card-img-container">
             <img 
               src="{% static 'images/cheese-tall-slice.svg' %}" 

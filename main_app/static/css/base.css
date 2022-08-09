@@ -28,7 +28,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 
     'Helvetica Neue', sans-serif;
-  min-height: 100vh;
+  height: 100vh;
   --nav-bg: #e3d5ca;
   --nav-bg-ff: #e3d5ca;
   --borders: #a98467 solid 2px;
@@ -179,7 +179,7 @@ nav li {
 
   main {
     max-width: 1300px;
-    min-height: calc(100vh - 53px);
+    min-height: calc(100vh - 87px);
   }
 
   nav,

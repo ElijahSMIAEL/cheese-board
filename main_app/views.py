@@ -34,6 +34,7 @@ def add_review(request, cheese_id):
   if form.is_valid():
     new_review = form.save(commit=False)
     new_review.cheese_id = cheese_id
+    new_review.user = request.user
     new_review.save()
   return redirect('cheese_details', cheese_id=cheese_id)
 @login_required
@@ -48,7 +49,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('cats_index')
+      return redirect('cheeses_index')
     else:
       error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
