@@ -15,4 +15,5 @@ urlpatterns = [
   path('pairings/', views.PairingList.as_view(), name='pairings_index'),
   path('pairings/<int:pk>/update/', views.PairingUpdate.as_view(), name='pairings_update'),
   path('pairings/<int:pk>/delete/', views.PairingDelete.as_view(), name='pairings_delete'),
+  path('cheeses/<int:cheese_id>/assoc_pairing/<int:pairing_id>/', views.assoc_pairing, name='assoc_pairing')
 ]

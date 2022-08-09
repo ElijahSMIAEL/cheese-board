@@ -74,6 +74,57 @@
     </div>
   {% endif %}
   </section>
+  <section class="pairings">
+    <div class="subsection-title">
+      <h2>Pairings</h2>
+      <img src="{% static 'images/string.svg' %}" alt="A ball of string" />
+      <img src="{% static 'images/mouse.svg' %}" alt="A mouse" />
+      <img src="{% static 'images/fish.svg' %}" alt="A fishy toy" />
+    </div>
+    <h3>{{ cheese.name }}'s Pairings</h3>
+    <div class="subsection-content">
+      {% if cheese.pairings.count %}
+        {% for pairing in cheese.pairings.all %}
+          <div class="pairing-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ pairing.color }}"
+            ></div>
+            <a href="{% url 'pairing_detail' pairing.id %}">
+              <p>{{ pairing.name }} {{ pairing.get_type_display }}</p>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="no-pairings">{{pairing.name}} doesn't have any pairings</p>
+      {% endif %}
+    </div>
+    <h3>Available Pairings</h3>
+    <div class="subsection-content">
+      {% comment %} We'll display available toys here {% endcomment %}
+      {% if pairings.count %}
+        {% for pairing in pairings.all %}
+          <div class="pairing-container">
+            <div 
+              class="color-block"
+              style="background-color: {{ pairing.color }}"
+            ></div>
+            <a href="{% url 'pairing_detail' pairing.id %}">
+              <p>{{ pairing.name }} {{ pairing.get_type_display }}</p>
+            </a>
+            <form action="{% url 'assoc_pairing' cheese.id pairing.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn submit">Add Pairing</button>
+            </form>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p class="all-pairings">
+          {{cheese.name}} already has all the available pairings
+        </p>
+      {% endif %}
+    </div>
+  </section>
 </div>
 
 {% endblock %}

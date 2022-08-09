@@ -18,11 +18,26 @@ PAIRINGS = (
   ('Ch', 'Chocolate'),
 )
 
+class Pairing(models.Model):
+  name = models.CharField(max_length=60)
+  type = models.CharField(
+    max_length=2,
+    choices=PAIRINGS,
+    default=PAIRINGS[0][0]
+  ) 
+
+  def __str__(self):
+    return f'Name: {self.name} Type: {self.get_type_display()}'
+
+  def get_absolute_url(self):
+      return reverse("pairing_detail", kwargs={"pk": self.id})
+  
 class Cheese(models.Model):
   name = models.CharField(max_length=60)
   brand = models.CharField(max_length=60)
   age = models.IntegerField()
   description = models.TextField(max_length=250)
+  pairings = models.ManyToManyField(Pairing)
 
   def __str__(self):
     return self.name
@@ -41,18 +56,3 @@ class Review(models.Model):
 
   def __str__(self):
     return f'Rating: {self.get_rating_display()} Review: {self.content}'
-
-class Pairing(models.Model):
-  name = models.CharField(max_length=60)
-  type = models.CharField(
-    max_length=2,
-    choices=PAIRINGS,
-    default=PAIRINGS[0][0]
-  ) 
-
-  def __str__(self):
-    return f'Name: {self.name} Type: {self.get_type_display()}'
-
-  def get_absolute_url(self):
-      return reverse("pairing_detail", kwargs={"pk": self.id})
-  
