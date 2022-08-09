@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.db import models
 from django.urls import reverse
 
@@ -8,6 +9,13 @@ RATINGS = (
   ('C', 'Good'),
   ('D', 'Decent'),
   ('F', 'Bad'),
+)
+
+PAIRINGS = (
+  ('W', 'Wine'),
+  ('F', 'Fruit'),
+  ('C', 'Crackers'),
+  ('Ch', 'Chocolate'),
 )
 
 class Cheese(models.Model):
@@ -33,3 +41,18 @@ class Review(models.Model):
 
   def __str__(self):
     return f'Rating: {self.get_rating_display()} Review: {self.content}'
+
+class Pairing(models.Model):
+  name = models.CharField(max_length=60)
+  type = models.CharField(
+    max_length=2,
+    choices=PAIRINGS,
+    default=PAIRINGS[0][0]
+  ) 
+
+  def __str__(self):
+    return f'Name: {self.name} Type: {self.get_type_display()}'
+
+  def get_absolute_url(self):
+      return reverse("pairing_detail", kwargs={"pk": self.id})
+  

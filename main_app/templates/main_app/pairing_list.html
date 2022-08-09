@@ -1,0 +1,37 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/pairings/pairing-index.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+  <h1>All Cheese Pairings</h1>
+  <img src="{% static 'images/cheese-square.svg' %}" alt="A ball of string" />
+  <img src="{% static 'images/cheese-square.svg' %}" alt="A mouse" />
+  <img src="{% static 'images/cheese-square.svg' %}" alt="A scratching post" />
+  <img src="{% static 'images/cheese-square.svg' %}" alt="A fishy toy" />
+</section>
+
+<section class="card-container">
+  {% for pairing in pairing_list %}
+  <div class="card" style="border-color: {{ pairing.color }} "
+  >
+    <div class="card-bg" style="background-color: {{ pairing.color }}"></div>
+    <a href="{% url 'pairing_detail' pairing.id %}">
+      <div class="card-content">
+        <h2>{{ pairing.name }}</h2>
+        <p>Type: {{ pairing.get_type_display }}</p>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

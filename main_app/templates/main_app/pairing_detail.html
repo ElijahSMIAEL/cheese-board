@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/pairings/pairing-details.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+  
+<div class="card" style="border-color: {{ pairing.color }}">
+  <div class="card-content">
+    <h2>{{ pairing.name }}</h2>
+    <p>Type: {{ pairing.get_type_display }}</p>
+  </div>
+</div>
+<a href="{% url 'pairings_update' pairing.id %}" class="btn warn">Edit</a>
+<a href="{% url 'pairings_delete' pairing.id %}" class="btn danger">Delete</a>
+
+{% endblock %}

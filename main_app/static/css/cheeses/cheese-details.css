@@ -101,7 +101,11 @@
 
 .review-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+}
+
+.review {
   border-top: solid 3px black;
 }
 

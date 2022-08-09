@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Cheese
+from django.views.generic import ListView, DetailView
+
+from .models import Cheese, Pairing
+from .forms import ReviewForm
 
 def home(request):
   return render(request, 'home.html')
@@ -14,7 +17,18 @@ def cheeses_index(request):
 
 def cheese_details(request, cheese_id):
   cheese = Cheese.objects.get(id=cheese_id)
-  return render(request, 'cheeses/details.html', { 'cheese': cheese })
+  review_form = ReviewForm()
+  return render(request, 'cheeses/details.html', { 
+    'cheese': cheese, 'review_form': review_form 
+  })
+
+def add_review(request, cheese_id):
+  form = ReviewForm(request.POST)
+  if form.is_valid():
+    new_review = form.save(commit=False)
+    new_review.cheese_id = cheese_id
+    new_review.save()
+  return redirect('cheese_details', cheese_id=cheese_id)
 
 class CheeseCreate(CreateView):
   model = Cheese
@@ -28,3 +42,21 @@ class CheeseUpdate(UpdateView):
 class CheeseDelete(DeleteView):
   model = Cheese
   success_url = '/cheeses/'
+
+class PairingCreate(CreateView):
+  model = Pairing
+  fields = '__all__'
+
+class PairingList(ListView):
+  model = Pairing
+
+class PairingDetail(DetailView):
+  model = Pairing
+
+class PairingUpdate(UpdateView):
+  model= Pairing
+  fields = ['name', 'type']
+
+class PairingDelete(DeleteView):
+  model = Pairing
+  success_url = '/pairings/'

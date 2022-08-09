@@ -49,7 +49,18 @@
         alt="Cheese Wheel"
       />
     </div>
-    <div class='review-container'>
+    <h3>Review this Cheese</h3>
+    <form
+    action="{% url 'add_review' cheese.id %}"
+    method="post" 
+    class="subsection-content"
+    >
+    {% csrf_token %}
+    {{ review_form.as_p }}
+    <button type="submit" class="btn submit">Add Review</button>
+  </form>
+  {% if cheese.review_set.all.count %}
+  <div class='review-container'>
       {% for review in cheese.review_set.all %}
       <div class='review'>
         <h3>Rating: {{review.get_rating_display}}</h3>
@@ -57,6 +68,11 @@
       </div>
       {% endfor %}
     </div>
+  {% else %}
+    <div class='subsection-content'>
+      <p>{{cheese.name}} has no reviews</p>
+    </div>
+  {% endif %}
   </section>
 </div>
 
