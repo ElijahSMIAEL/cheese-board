@@ -9,7 +9,7 @@
   width: 275px;
   background-color: #e3d5ca;
   margin: 10px;
-  border: var(--borders);
+  border: solid 3px #6c584c;
   box-shadow: var(--card-box-shadow);
 }
 

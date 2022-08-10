@@ -75,7 +75,7 @@ class CheeseDelete(LoginRequiredMixin, DeleteView):
 
 class PairingCreate(LoginRequiredMixin, CreateView):
   model = Pairing
-  fields = '__all__'
+  fields = ['name', 'type']
 
 class PairingList(LoginRequiredMixin, ListView):
   model = Pairing
